@@ -1,6 +1,7 @@
 const express = require('express');
 const connection = require('./db');
 const ingredientRouter = require('./routers/ingredientRouter');
+const recipeRouter = require('./routers/recipeRouter');
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/ingredients', ingredientRouter);
+app.use('/recipes', recipeRouter);
 
 app.listen(3000, () => {
   console.log('Ca fonctionne');
