@@ -103,7 +103,7 @@ const deleteOneById = async (request, response) => {
         .json({ message: 'Ingrédient non trouvé', error: true });
     }
 
-    const infos = await Ingredient.deleteOneById(id);
+    const infos = await Ingredient.deleteOne({ _id: id });
 
     response
       .status(201)
