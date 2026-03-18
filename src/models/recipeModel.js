@@ -16,9 +16,12 @@ const recipeSchema = new Schema(
       type: Number,
       required: true,
     },
-
     ingredients: [
       {
+        ingredient : {
+          type: Schema.Types.ObjectId,
+          ref:"Ingredient"
+        },
         quantity: Number,
         unit: String,
       },
@@ -29,6 +32,9 @@ const recipeSchema = new Schema(
   { timestamps: true },
 );
 
+recipeSchema.virtual('totalIngredients').get(() => {
+  return this.ingredients.length;
+});
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
 module.exports = Recipe;
